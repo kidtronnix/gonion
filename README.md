@@ -43,20 +43,19 @@ handler := NewHTTPHandler(
 
 There are a tonne of golang micro http framework packages. So what does this package solve?
 
-Well okay, let me ask the reader a question; what would the ideal http handler look like?
+Well okay, let me ask the reader a question; what would the ideal http handler look like? 
 
 <img alt="request lifecycle diagram" src="https://docs.google.com/drawings/d/1UslicNjEfqS2rGkINFw3zIK7DPFMSHmA2iszbB0Y6jQ/pub?w=480&amp;h=360" align="right">
 
-
-Well an onion right.
+An onion right.
 
 Think about it, typically a request lifecycle can be split into a distinct stages.
-These stages can be completely coupled, i.e. one stage depends on a value of a previous middleware.
-Or these stages can de de-coupled, one stage has no dependency on another stage.
+These stages can be tightly coupled, i.e. one stage depends on a value of a previous middleware.
+Or these stages can be loosely coupled, i.e. one stage has no dependency on another stage.
 
 Ok so we need http handlers that can be composed of many individual layers.
-These layers should be able to be put together independently of each other as this allows
-for decoupling of stages for easy testing and flexible composition.
+These layers should be able to be put together independently of each other as this allows 
+for easy testing and flexible composition.
 But the layers also need to be able to pass across some concept of request context to allow coupling between stages.
 
 So what about the context, what features should it have?
@@ -70,7 +69,7 @@ So we should be able to safely pass our context to RPC microservices.
 
 Ok so we should just use google's solution to passing context, [https://godoc.org/golang.org/x/net/context](https://godoc.org/golang.org/x/net/context).
 
-Put all that together and you have yourself gonion; a flexible yet robust way of putting together HTTP handlers.
+Put all that together and you have yourself `gonion`; a flexible yet robust way of putting together HTTP handlers.
 
 
 ## Initial Inspiration
