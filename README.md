@@ -5,16 +5,16 @@ Golang HTTP handlers abstracted into onions.
 ## Usage
 
 ```go
-func HelloMiddleware(h Handler) Handler {
-	return HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
+func HelloMiddleware(h gonion.Handler) gonion.Handler {
+	return gonion.HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
 		ctx = context.WithValue(ctx, "args", []string{"hello"})
 		// Pass to next stage of handler
 		h.ServeHTTPContext(ctx, rw, req)
 	})
 }
 
-func WorldMiddleware(h Handler) Handler {
-	return HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
+func WorldMiddleware(h gonion.Handler) gonion.Handler {
+	return gonion.HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
 		args := ctx.Value("args").([]string)
 		ctx = context.WithValue(ctx, "args", append(args, "world"))
 		// Pass to next stage of handler
@@ -22,7 +22,7 @@ func WorldMiddleware(h Handler) Handler {
 	})
 }
 
-func Response(h Handler) Handler {
+func Response(h gonion.Handler) gonion.Handler {
 	return HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
 		args := ctx.Value("args").([]string)
 		str := strings.Join(args, " ")
@@ -30,7 +30,7 @@ func Response(h Handler) Handler {
 	})
 }
 
-handler := NewHTTPHandler(
+handler := gonion.NewHTTPHandler(
 	HelloMiddleware,
 	WorldMiddleware,
 	Response,
