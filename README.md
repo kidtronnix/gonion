@@ -41,7 +41,7 @@ handler := NewHTTPHandler(
 
 ### why?
 
-<img src="https://docs.google.com/drawings/d/1UslicNjEfqS2rGkINFw3zIK7DPFMSHmA2iszbB0Y6jQ/pub?w=480&amp;h=360" style="float: right;">
+<img alt="request lifecycle diagram" src="https://docs.google.com/drawings/d/1UslicNjEfqS2rGkINFw3zIK7DPFMSHmA2iszbB0Y6jQ/pub?w=480&amp;h=360" align="right">
 
 There are a tonne of golang micro http framework packages. So what does this package solve?
 
