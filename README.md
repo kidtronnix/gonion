@@ -39,11 +39,9 @@ handler := NewHTTPHandler(
 
 ```
 
-### why?
+### About
 
-There are a tonne of golang micro http framework packages. So what does this package solve?
-
-Well okay, let me ask the reader a question; what would the ideal http handler look like? 
+Let me ask the reader a question - what would the ideal http handler look like? 
 
 <img alt="request lifecycle diagram" src="https://docs.google.com/drawings/d/1UslicNjEfqS2rGkINFw3zIK7DPFMSHmA2iszbB0Y6jQ/pub?w=480&amp;h=360" align="right">
 
@@ -60,20 +58,21 @@ But the layers also need to be able to pass across some concept of request conte
 
 So what about the context, what features should it have?
 
-Well we need a request context to be passed in a way that scales. So no use of global structs with
-mutexes that can introduce lock contention for heavily requested endpoints.
+Well we need a request context to be passed in a way that scales. So no use of global context structs guarded with
+mutexes. That approach can introduce lock contention for heavily requested endpoints.
 
 Our context package should be a standard package to allow for creating reusable middleware packages.
-On top of this our context should be safe to pass across service boundaries and processes.
-So we should be able to safely pass our context to RPC microservices.
 
-Ok so we should just use google's solution to passing context, [https://godoc.org/golang.org/x/net/context](https://godoc.org/golang.org/x/net/context).
+On top of this, our context should be safe to pass across service boundaries and processes.
+For instance we should be able to safely pass our context to RPC microservices.
 
-Put all that together and you have yourself `gonion`; a flexible yet robust way of putting together HTTP handlers.
+The obvious solution to this is google's solution to context, [https://godoc.org/golang.org/x/net/context](https://godoc.org/golang.org/x/net/context).
+
+Put all that together and you have yourself `gonion` - a flexible yet robust way of putting together HTTP handlers.
 
 
-## Initial Inspiration
+## Inspiration
 
-An excellent talk about the benefits of using the decorator pattern.
+The inspirational source of the onion abstraction. A great talk about the benefits of the decorator pattern.
 
 [https://www.youtube.com/watch?v=xyDkyFjzFVc](https://www.youtube.com/watch?v=xyDkyFjzFVc)
