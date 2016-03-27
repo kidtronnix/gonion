@@ -4,7 +4,7 @@ Golang HTTP handlers abstracted into onions.
 
 ## Usage
 
-```golang
+```go
 func HelloMiddleware(h Handler) Handler {
 	return HandlerFunc(func(ctx context.Context, rw http.ResponseWriter, req *http.Request) {
 		ctx = context.WithValue(ctx, "args", []string{"hello"})
