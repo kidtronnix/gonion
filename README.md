@@ -49,9 +49,9 @@ Well okay, let me ask the reader a question; what would the ideal http handler l
 
 An onion right.
 
-Think about it, typically a request lifecycle can be split into a distinct stages.
-These stages can be tightly coupled, i.e. one stage depends on a value of a previous middleware.
-Or these stages can be loosely coupled, i.e. one stage has no dependency on another stage.
+Think about it, typically a request lifecycle can be split into distinct stages.
+These stages can be tightly coupled, i.e. one stage depends on a value of a previous stage.
+Or these stages can be loosely coupled, i.e. one stage has no dependency to the others.
 
 Ok so we need http handlers that can be composed of many individual layers.
 These layers should be able to be put together independently of each other as this allows 
